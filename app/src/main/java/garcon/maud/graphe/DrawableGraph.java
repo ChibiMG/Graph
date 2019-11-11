@@ -25,6 +25,17 @@ public class DrawableGraph extends Drawable {
     // methode draw
     @Override
     public void draw(@NonNull Canvas canvas) {
+        //dessiner les arcs du graphe
+        for (Arc arc : graphe.getArcs()){
+            //dessiner les arcs avec des lignes
+            canvas.drawLine(
+                    arc.getNoeudDepart().getX()+ arc.getNoeudDepart().getTailleNoeud()/2,
+                    arc.getNoeudDepart().getY()+ arc.getNoeudDepart().getTailleNoeud()/2,
+                    arc.getNoeudArrive().getX()+ arc.getNoeudArrive().getTailleNoeud()/2,
+                    arc.getNoeudArrive().getY()+ arc.getNoeudArrive().getTailleNoeud()/2,
+                    arc.getPaint()
+            );
+        }
 
         //dessiner les noeuds du graphe
         for (Node noeud : graphe.getNoeuds()) {
@@ -35,7 +46,7 @@ public class DrawableGraph extends Drawable {
             //param dessin du texte
             paintT.setTextSize(noeud.getTailleNoeud()/3);
             paintT.setColor(0xFFFFFFFF);
-            paintT.setShadowLayer(20.0f, 0.0f, 0.0f, 0xFF000000);
+            paintT.setShadowLayer(5.0f, 0.0f, 0.0f, 0xFF000000);
 
             //si le noeud est selectionné (pour faire un arc)
             if (noeud.isSelected()){
@@ -47,19 +58,7 @@ public class DrawableGraph extends Drawable {
             canvas.drawRoundRect( noeud.getX(), noeud.getY(), noeud.getX() + noeud.getTailleNoeud(), noeud.getY()+noeud.getTailleNoeud(), noeud.getTailleNoeud()/2, noeud.getTailleNoeud()/2, paintN);
 
             //On créé les textes des noeuds
-            canvas.drawText(noeud.getNom(),noeud.getX()+noeud.getTailleNoeud()/2,noeud.getY()+noeud.getTailleNoeud()/2,paintT);
-        }
-
-        //dessiner les arcs du graphe
-        for (Arc arc : graphe.getArcs()){
-            //dessiner les arcs avec des lignes
-            canvas.drawLine(
-                    arc.getNoeudDepart().getX()+ arc.getNoeudDepart().getTailleNoeud()/2,
-                    arc.getNoeudDepart().getY()+ arc.getNoeudDepart().getTailleNoeud()/2,
-                    arc.getNoeudArrive().getX()+ arc.getNoeudArrive().getTailleNoeud()/2,
-                    arc.getNoeudArrive().getY()+ arc.getNoeudArrive().getTailleNoeud()/2,
-                    arc.getPaint()
-            );
+            canvas.drawText(noeud.getNom(),noeud.getX()+noeud.getTailleNoeud()/2 - paintT.measureText(noeud.getNom())/2,noeud.getY()+noeud.getTailleNoeud()/2 - (paintT.descent() + paintT.ascent())/2,paintT);
         }
     }
 

@@ -17,4 +17,7 @@
     <string name="action_modif_nom_noeud">Modifier le nom</string>
     <string name="action_modif_couleur_noeud">Modifier la couleur</string>
     <string name="action_modif_taille_noeud">Modifier la taille</string>
+    <string name="select_node">Selectionner un noeud</string>
+    <string name="select_two_nodes">Selectionner 2 noeuds</string>
+    <string name="action_modif_etiquette_arc">Modifier l\'étiquette</string>
 </resources>

@@ -12,6 +12,7 @@ import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.InputType;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -153,7 +154,7 @@ public class MainActivity extends AppCompatActivity implements EditionMenuFragme
                                 break;
                             case EDIT_NOEUD:
                                 if (editionMenuFragment == null) {
-                                    editionMenuFragment = EditionMenuFragment.newInstance();
+                                    editionMenuFragment = EditionMenuFragment.newInstance(R.menu.menu_edit_node);
                                     editionMenuFragment.show(getSupportFragmentManager(), "Custom bottom sheet");
                                 }
                                 break;
@@ -200,6 +201,7 @@ public class MainActivity extends AppCompatActivity implements EditionMenuFragme
             case R.id.action_ajouter_arc :
                 //on change de mode en ajout arc
                 mode = Mode.AJOUT_ARC;
+                Toast.makeText(this,getText(R.string.select_two_nodes), Toast.LENGTH_LONG).show();
                 break;
              //cas du bouton envoyer un mail
             case R.id.action_envoie :
@@ -237,10 +239,11 @@ public class MainActivity extends AppCompatActivity implements EditionMenuFragme
 
             case R.id.action_editer_noeud:
                 mode = Mode.EDIT_NOEUD;
+                Toast.makeText(this,getText(R.string.select_node), Toast.LENGTH_LONG).show();
                 break;
 
             case R.id.action_editer_arc:
-                EditionMenuFragment.newInstance().show(getSupportFragmentManager(), "Custom bottom sheet");
+                EditionMenuFragment.newInstance(R.menu.menu_edit_arc).show(getSupportFragmentManager(), "Custom bottom sheet");
                 mode = Mode.EDIT_ARC;
                 break;
                 //TODO edition des arcs
@@ -264,11 +267,36 @@ public class MainActivity extends AppCompatActivity implements EditionMenuFragme
                 imageGraph.invalidate();
                 //fermer le fragement
                 editionMenuFragment.dismiss();
-                editionMenuFragment = null;
                 break;
 
             case R.id.action_modif_nom_noeud:
-                //TODO Modifier le nom du noeud
+                //ouvrir une fenetre d'alerte
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setTitle(getString(R.string.action_modif_nom_noeud));
+
+                // creation du champ text
+                final EditText input = new EditText(this);
+                //pour avoir le nom du noeud dans le champ
+                input.setHint(noeudSelec1.getNom());
+                //input.setInputType(InputType.TYPE_CLASS_TEXT);
+                builder.setView(input);
+
+                // Set up the buttons
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        noeudSelec1.setNom(input.getText().toString());
+                        imageGraph.invalidate();
+                    }
+                });
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+
+                builder.show();
                 break;
 
             case R.id.action_modif_couleur_noeud:
@@ -279,5 +307,11 @@ public class MainActivity extends AppCompatActivity implements EditionMenuFragme
                 //TODO modifier la taille du noeud
                 break;
         }
+    }
+
+    @Override
+    public void onDismissMenu() {
+        editionMenuFragment = null;
+        mode = Mode.NORMAL;
     }
 }

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/action_sup_noeud"
+        android:title="@string/action_sup_noeud"/>
+
+    <item
+        android:id="@+id/action_modif_nom_noeud"
+        android:title="@string/action_modif_nom_noeud" />
+
+    <item
+        android:id="@+id/action_modif_couleur_noeud"
+        android:title="@string/action_modif_couleur_noeud" />
+
+    <item
+        android:id="@+id/action_modif_taille_noeud"
+        android:title="@string/action_modif_taille_noeud" />
+</menu>

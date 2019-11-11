@@ -13,4 +13,9 @@
     <string name="mail_subject">Graph of the app GrapheGarconKnab</string>
     <string name="send_mail">Send email...</string>
     <string name="not_app">Not applies</string>
+    <string name="action_editer_noeud">Node edition</string>
+    <string name="action_editer_arc">Arc edition</string>
+    <string name="action_modif_nom_noeud">Modify name</string>
+    <string name="action_modif_couleur_noeud">Modify color</string>
+    <string name="action_modif_taille_noeud">Modify size</string>
 </resources>

@@ -29,14 +29,25 @@ public class DrawableGraph extends Drawable {
         //dessiner les noeuds du graphe
         for (Node noeud : graphe.getNoeuds()) {
             //param de dessin du noeud
-            Paint paint = new Paint();
+            Paint paintN = new Paint();
+            Paint paintT = new Paint();
+
+            //param dessin du texte
+            paintT.setTextSize(noeud.getTailleNoeud()/3);
+            paintT.setColor(0xFFFFFFFF);
+            paintT.setShadowLayer(20.0f, 0.0f, 0.0f, 0xFF000000);
+
             //si le noeud est selectionné (pour faire un arc)
             if (noeud.isSelected()){
                 //on lui ajoute une ombre bleue
-                paint.setShadowLayer(20.0f, 0.0f, 0.0f, 0xFF0000FF);
+                paintN.setShadowLayer(20.0f, 0.0f, 0.0f, 0xFF0000FF);
             }
+
             //dans le cas normal on créé des noeuds sans ombre
-            canvas.drawRoundRect( noeud.getX(), noeud.getY(), noeud.getX() + noeud.getTailleNoeud(), noeud.getY()+noeud.getTailleNoeud(), noeud.getTailleNoeud()/2, noeud.getTailleNoeud()/2, paint);
+            canvas.drawRoundRect( noeud.getX(), noeud.getY(), noeud.getX() + noeud.getTailleNoeud(), noeud.getY()+noeud.getTailleNoeud(), noeud.getTailleNoeud()/2, noeud.getTailleNoeud()/2, paintN);
+
+            //On créé les textes des noeuds
+            canvas.drawText(noeud.getNom(),noeud.getX()+noeud.getTailleNoeud()/2,noeud.getY()+noeud.getTailleNoeud()/2,paintT);
         }
 
         //dessiner les arcs du graphe

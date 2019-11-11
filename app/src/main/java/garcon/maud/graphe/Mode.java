@@ -9,5 +9,6 @@ package garcon.maud.graphe;
 public enum Mode {
     NORMAL,
     AJOUT_ARC,
-    SUP_NOEUD
+    EDIT_NOEUD,
+    EDIT_ARC
 }

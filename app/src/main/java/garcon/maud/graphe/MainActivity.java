@@ -34,7 +34,7 @@ import java.nio.file.Files;
  * TODO : V2 landscape (prise en compte rotation) + etiquette des arcs parfaitement dessiné + sauvegarde/import de graphe + changer la courbure de l'arc lors du touché + arc orienté (+ arc courbé) + arc en mode tiré
  */
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements EditionMenuFragment.Listener {
 
     // Variables de vue du graphe
     private ImageView imageGraph;
@@ -47,6 +47,8 @@ public class MainActivity extends AppCompatActivity {
     // Variable des modes
     private Node noeudSelec1;
     private Node noeudSelec2;
+
+    private EditionMenuFragment editionMenuFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
                                             noeudSelec2 = noeud;
                                         }
                                         break;
-                                    case SUP_NOEUD:
+                                    case EDIT_NOEUD:
                                         //en mode suppression de noeud on selectionne le noeud a supprimer
                                         noeudSelec1 = noeud;
                                 }
@@ -149,16 +151,11 @@ public class MainActivity extends AppCompatActivity {
                                     imageGraph.invalidate();
                                 }
                                 break;
-                            case SUP_NOEUD:
-                                //si mode suppression de noeud
-                                //on appelle la fonction de suppression de noeud
-                                graphe.supprimerNoeud(noeudSelec1);
-                                //on repasse le noeud selectionné a null
-                                noeudSelec1 = null;
-                                //on repasse en mode normal
-                                mode = Mode.NORMAL;
-                                //on met a jour la vue
-                                imageGraph.invalidate();
+                            case EDIT_NOEUD:
+                                if (editionMenuFragment == null) {
+                                    editionMenuFragment = EditionMenuFragment.newInstance();
+                                    editionMenuFragment.show(getSupportFragmentManager(), "Custom bottom sheet");
+                                }
                                 break;
                         }
                 }
@@ -204,11 +201,7 @@ public class MainActivity extends AppCompatActivity {
                 //on change de mode en ajout arc
                 mode = Mode.AJOUT_ARC;
                 break;
-             //cas du bouton supprimer noeud
-            case R.id.action_sup_noeud :
-                //on change de mode pour sup noeud
-                mode = Mode.SUP_NOEUD;
-                break;
+             //cas du bouton envoyer un mail
             case R.id.action_envoie :
 
                 try{
@@ -241,8 +234,50 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this, R.string.not_app, Toast.LENGTH_SHORT).show();
                 }
                 break;
+
+            case R.id.action_editer_noeud:
+                mode = Mode.EDIT_NOEUD;
+                break;
+
+            case R.id.action_editer_arc:
+                EditionMenuFragment.newInstance().show(getSupportFragmentManager(), "Custom bottom sheet");
+                mode = Mode.EDIT_ARC;
+                break;
+                //TODO edition des arcs
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onItemClick(int id) {
+        switch (id) {
+            //cas bouton supprimer noeud
+            case R.id.action_sup_noeud:
+                //on appelle la fonction de suppression de noeud
+                graphe.supprimerNoeud(noeudSelec1);
+                //on repasse le noeud selectionné a null
+                noeudSelec1 = null;
+                //on repasse en mode normal
+                mode = Mode.NORMAL;
+                //on met a jour la vue
+                imageGraph.invalidate();
+                //fermer le fragement
+                editionMenuFragment.dismiss();
+                editionMenuFragment = null;
+                break;
+
+            case R.id.action_modif_nom_noeud:
+                //TODO Modifier le nom du noeud
+                break;
+
+            case R.id.action_modif_couleur_noeud:
+                //TODO modifier la couleur du nom
+                break;
+
+            case R.id.action_modif_taille_noeud:
+                //TODO modifier la taille du noeud
+                break;
+        }
     }
 }

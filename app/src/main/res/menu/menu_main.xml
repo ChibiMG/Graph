@@ -16,10 +16,16 @@
         app:showAsAction="never" />
 
     <item
-        android:id="@+id/action_sup_noeud"
+        android:id="@+id/action_editer_noeud"
         android:orderInCategory="100"
-        android:title="@string/action_sup_noeud"
-        app:showAsAction="never" />
+        android:title="@string/action_editer_noeud"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/action_editer_arc"
+        android:orderInCategory="100"
+        android:title="@string/action_editer_arc"
+        app:showAsAction="never"/>
 
     <item
         android:id="@+id/action_reset"

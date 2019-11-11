@@ -3,7 +3,7 @@
     <string name="action_reset">Reinitialiser le graphe</string>
     <string name="action_ajouter">Ajouter un noeud</string>
     <string name="action_ajouter_arc">Ajouter un arc</string>
-    <string name="action_sup_noeud">Supprimer un noeud</string>
+    <string name="action_sup_noeud">Supprimer le noeud</string>
     <string name="action_envoie">Envoyer par mail</string>
     <string name="entrer_mail">Entrer une adresse mail</string>
     <string name="action_ok">OK</string>
@@ -12,4 +12,9 @@
     <string name="mail_subject">Graphe de l\'app GrapheGarconKnab</string>
     <string name="send_mail">Envoie du mail ...</string>
     <string name="not_app">Pas d\'application mail cliente installée.</string>
+    <string name="action_editer_noeud">Editer un noeud</string>
+    <string name="action_editer_arc">Editer un arc</string>
+    <string name="action_modif_nom_noeud">Modifier le nom</string>
+    <string name="action_modif_couleur_noeud">Modifier la couleur</string>
+    <string name="action_modif_taille_noeud">Modifier la taille</string>
 </resources>

@@ -18,4 +18,7 @@
     <string name="action_modif_nom_noeud">Modify name</string>
     <string name="action_modif_couleur_noeud">Modify color</string>
     <string name="action_modif_taille_noeud">Modify size</string>
+    <string name="select_node">Select node</string>
+    <string name="select_two_nodes">Select 2 nodes</string>
+    <string name="action_modif_etiquette_arc">Modify tag</string>
 </resources>

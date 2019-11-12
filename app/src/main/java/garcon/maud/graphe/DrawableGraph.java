@@ -55,7 +55,7 @@ public class DrawableGraph extends Drawable {
             }
 
             //dans le cas normal on créé des noeuds sans ombre
-            canvas.drawRoundRect( noeud.getX(), noeud.getY(), noeud.getX() + noeud.getTailleNoeud(), noeud.getY()+noeud.getTailleNoeud(), noeud.getTailleNoeud()/2, noeud.getTailleNoeud()/2, paintN);
+            canvas.drawRoundRect( noeud.getX(), noeud.getY(), noeud.getX() + noeud.getTailleNoeud(), noeud.getY()+noeud.getTailleNoeud(), noeud.getTailleNoeud()/2, noeud.getTailleNoeud()/2, noeud.getPaint());
 
             //On créé les textes des noeuds
             canvas.drawText(noeud.getNom(),noeud.getX()+noeud.getTailleNoeud()/2 - paintT.measureText(noeud.getNom())/2,noeud.getY()+noeud.getTailleNoeud()/2 - (paintT.descent() + paintT.ascent())/2,paintT);

@@ -300,7 +300,16 @@ public class MainActivity extends AppCompatActivity implements EditionMenuFragme
                 break;
 
             case R.id.action_modif_couleur_noeud:
-                //TODO modifier la couleur du nom
+                ColorPickerDialog colorPickerDialog = new ColorPickerDialog(this, noeudSelec1.getPaint().getColor(), new ColorPickerDialog.OnColorSelectedListener() {
+
+                    @Override
+                    public void onColorSelected(int color) {
+                        noeudSelec1.getPaint().setColor(color);
+                        imageGraph.invalidate();
+                    }
+
+                });
+                colorPickerDialog.show();
                 break;
 
             case R.id.action_modif_taille_noeud:

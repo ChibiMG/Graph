@@ -19,7 +19,7 @@ public class Graph {
         noeuds = new ArrayList<>();
         for (int i = 0; i < n; i++){
             //intialisations des noeuds
-            noeuds.add(new Node(120 * i,0, "noir", String.valueOf(i), 100));
+            noeuds.add(new Node(120 * i,0, String.valueOf(i)));
         }
 
         //initialisation liste arc
@@ -48,10 +48,9 @@ public class Graph {
 
     /**
      * Ajouter un noeud dans le graphe
-     * TODO : unicité des noms
      */
     public void ajouterNoeud(){
-        noeuds.add(new Node( 300,300, "noir", "0", 100));
+        noeuds.add(new Node( 300,300, "0"));
     }
 
     /**

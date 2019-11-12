@@ -1,5 +1,8 @@
 package garcon.maud.graphe;
 
+import android.graphics.Color;
+import android.graphics.Paint;
+
 import java.util.ArrayList;
 
 /**
@@ -10,8 +13,8 @@ public class Node {
     //position du noeud
     private float x;
     private float y;
-    //couleur du noeud
-    private String couleur;
+    //parametres de dessin pour le noeud
+    private Paint paint = new Paint();
     //taille du noeud
     private int tailleNoeud;
     //nom du noeud
@@ -20,11 +23,10 @@ public class Node {
     private boolean isSelected;
 
     //constructeur
-    public Node(float x, float y, String couleur, String nom, int tailleNoeud) {
+    public Node(float x, float y, String nom) {
         this.x = x;
         this.y = y;
-        this.couleur = couleur;
-        this.tailleNoeud = tailleNoeud;
+        this.tailleNoeud = 100;
         this.nom = nom;
     }
 
@@ -68,5 +70,16 @@ public class Node {
     public void setSelected(boolean selected) {
         isSelected = selected;
     }
+
+    public Paint getPaint() {
+        return paint;
+    }
+
+    public void setPaint(Paint paint) {
+        this.paint = paint;
+    }
+
     //----------------------------------------------------------------------------------------
+
+
 }

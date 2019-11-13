@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 /**
- * Created by Maud Garçon & Saly Knab on 10/10/2019.
+ * Created by Maud Garçon & Saly Knab
  */
 
 public class Graph {
@@ -15,11 +15,12 @@ public class Graph {
 
     //Constructeur de Graph
     public Graph(int n) {
+        //n = nombre de noeud
         //initialisation du liste de noeuds
         noeuds = new ArrayList<>();
         for (int i = 0; i < n; i++){
             //intialisations des noeuds
-            noeuds.add(new Node(120 * i,0, String.valueOf(i)));
+            noeuds.add(new Node(120 * i,0, "noir", String.valueOf(i), 100));
         }
 
         //initialisation liste arc
@@ -48,9 +49,10 @@ public class Graph {
 
     /**
      * Ajouter un noeud dans le graphe
+     * TODO : unicité des noms
      */
     public void ajouterNoeud(){
-        noeuds.add(new Node( 300,300, "0"));
+        noeuds.add(new Node( 300,300, "noir", "0", 100));
     }
 
     /**
@@ -69,11 +71,13 @@ public class Graph {
      * @param noeud
      */
     public void supprimerNoeud(Node noeud){
+        //supprime le noeud
         noeuds.remove(noeud);
         Iterator<Arc> i = arcs.iterator();
         while (i.hasNext()){
             Arc arc = i.next();
             if (arc.getNoeudDepart() == noeud || arc.getNoeudArrive() == noeud){
+                //supprime l'arc
                 i.remove();
             }
         }

@@ -313,7 +313,33 @@ public class MainActivity extends AppCompatActivity implements EditionMenuFragme
                 break;
 
             case R.id.action_modif_taille_noeud:
-                //TODO modifier la taille du noeud
+                //ouvrir une fenetre d'alerte
+                AlertDialog.Builder builder2 = new AlertDialog.Builder(this);
+                builder2.setTitle(getString(R.string.action_modif_taille_noeud));
+
+                // creation du champ text
+                final EditText input2 = new EditText(this);
+                //pour avoir le nom du noeud dans le champ
+                input2.setHint(noeudSelec1.getNom());
+                //input.setInputType(InputType.TYPE_CLASS_TEXT);
+                builder2.setView(input2);
+
+                // Set up the buttons
+                builder2.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        noeudSelec1.setTailleNoeud(input2.getText());
+                        imageGraph.invalidate();
+                    }
+                });
+                builder2.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+
+                builder2.show();
                 break;
         }
     }

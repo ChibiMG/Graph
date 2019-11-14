@@ -40,8 +40,8 @@ public class DrawableGraph extends Drawable {
         //dessiner les noeuds du graphe
         for (Node noeud : graphe.getNoeuds()) {
             //param de dessin du noeud
-            Paint paintN = new Paint();
             Paint paintT = new Paint();
+            Paint paintN = new Paint();
 
             //param dessin du texte
             paintT.setTextSize(noeud.getTailleNoeud()/3);
@@ -50,8 +50,10 @@ public class DrawableGraph extends Drawable {
 
             //si le noeud est selectionné (pour faire un arc)
             if (noeud.isSelected()){
+                //TODO a revoir
                 //on lui ajoute une ombre bleue
                 paintN.setShadowLayer(20.0f, 0.0f, 0.0f, 0xFF0000FF);
+                noeud.setPaint(paintN);
             }
 
             //dans le cas normal on créé des noeuds sans ombre

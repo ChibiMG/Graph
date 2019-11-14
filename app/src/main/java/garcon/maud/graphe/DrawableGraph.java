@@ -9,7 +9,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 /**
- * Created by Maud Garçon & Saly Knab on 10/10/2019.
+ * Created by Maud Garçon & Saly Knab
  */
 
 public class DrawableGraph extends Drawable {
@@ -22,6 +22,7 @@ public class DrawableGraph extends Drawable {
         this.graphe = graphe;
     }
 
+
     // methode draw
     @Override
     public void draw(@NonNull Canvas canvas) {
@@ -29,10 +30,13 @@ public class DrawableGraph extends Drawable {
         for (Arc arc : graphe.getArcs()){
             //dessiner les arcs avec des lignes
             canvas.drawLine(
+                    //On recupere les positions du noeud de depart...
                     arc.getNoeudDepart().getX()+ arc.getNoeudDepart().getTailleNoeud()/2,
                     arc.getNoeudDepart().getY()+ arc.getNoeudDepart().getTailleNoeud()/2,
+                    //...et ceux du noeud d'arrive
                     arc.getNoeudArrive().getX()+ arc.getNoeudArrive().getTailleNoeud()/2,
                     arc.getNoeudArrive().getY()+ arc.getNoeudArrive().getTailleNoeud()/2,
+                    //on trace l'arc
                     arc.getPaint()
             );
         }

@@ -1,4 +1,4 @@
-package garcon.maud.graphe;
+package fr.istic.mob.graphGarconKnab;
 
 /**
  * Created by Maud Garçon & Saly Knab on 10/10/2019.

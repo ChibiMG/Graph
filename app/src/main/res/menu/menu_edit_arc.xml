@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/action_sup_arc"
+        android:title="@string/action_sup_arc"/>
+
     <item
         android:id="@+id/action_modif_etiquette_arc"
         android:title="@string/action_modif_etiquette_arc"/>

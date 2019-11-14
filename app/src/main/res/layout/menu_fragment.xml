@@ -6,5 +6,5 @@
     android:clipToPadding="false"
     android:paddingBottom="8pt"
     android:paddingTop="8pt"
-    tools:context="garcon.maud.graphe.EditionMenuFragment"
+    tools:context="garcon.maud.graphe.fr.istic.mob.graphGarconKnab.EditionMenuFragment"
     tools:listitem="@layout/menu_item" />

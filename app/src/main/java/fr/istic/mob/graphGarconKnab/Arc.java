@@ -1,6 +1,5 @@
-package garcon.maud.graphe;
+package fr.istic.mob.graphGarconKnab;
 
-import android.graphics.Path;
 import android.graphics.Paint;
 
 /**
@@ -19,12 +18,12 @@ public class Arc {
     private Paint paint = new Paint();
 
     //constructeur de l'arc
-    public Arc(Node noeudDepart, Node noeudArrive, String nom) {
+    public Arc(Node noeudDepart, Node noeudArrive) {
         //definition du noeud de depart et d'arrive
         this.noeudDepart = noeudDepart;
         this.noeudArrive = noeudArrive;
         //definition du nom de l'arc
-        this.nom = nom;
+        this.nom = null;
 
         //on doit definir une taille et un style dans le paint pour que l'arc soit visible
         paint.setStrokeWidth(6F);

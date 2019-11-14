@@ -1,4 +1,4 @@
-package garcon.maud.graphe;
+package fr.istic.mob.graphGarconKnab;
 
 import android.graphics.Color;
 import android.graphics.Paint;

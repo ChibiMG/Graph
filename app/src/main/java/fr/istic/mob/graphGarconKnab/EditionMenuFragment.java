@@ -1,4 +1,4 @@
-package garcon.maud.graphe;
+package fr.istic.mob.graphGarconKnab;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -13,6 +13,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.PopupMenu;
 import android.widget.TextView;
+
+import garcon.maud.graphe.R;
 
 /**
  * Created by Maud Garçon & Saly Knab on 10/10/2019.

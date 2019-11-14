@@ -1,4 +1,4 @@
-package garcon.maud.graphe;
+package fr.istic.mob.graphGarconKnab;
 
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
@@ -45,7 +45,6 @@ public class DrawableGraph extends Drawable {
         for (Node noeud : graphe.getNoeuds()) {
             //param de dessin du noeud
             Paint paintT = new Paint();
-            Paint paintN = new Paint();
 
             //param dessin du texte
             paintT.setTextSize(noeud.getTailleNoeud()/3);
@@ -54,15 +53,13 @@ public class DrawableGraph extends Drawable {
 
             //si le noeud est selectionné (pour faire un arc)
             if (noeud.isSelected()){
-                //TODO a revoir
                 //on lui ajoute une ombre bleue
-                paintN.setShadowLayer(20.0f, 0.0f, 0.0f, 0xFF0000FF);
-                noeud.setPaint(paintN);
+                noeud.getPaint().setShadowLayer(20.0f, 0.0f, 0.0f, 0xFF0000FF);
             }
 
             //dans le cas normal on créé des noeuds sans ombre
             canvas.drawRoundRect( noeud.getX(), noeud.getY(), noeud.getX() + noeud.getTailleNoeud(), noeud.getY()+noeud.getTailleNoeud(), noeud.getTailleNoeud()/2, noeud.getTailleNoeud()/2, noeud.getPaint());
-
+            noeud.getPaint().clearShadowLayer();
             //On créé les textes des noeuds
             canvas.drawText(noeud.getNom(),noeud.getX()+noeud.getTailleNoeud()/2 - paintT.measureText(noeud.getNom())/2,noeud.getY()+noeud.getTailleNoeud()/2 - (paintT.descent() + paintT.ascent())/2,paintT);
         }

@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name="fr.istic.mob.graphGarconKnab.MainActivity"
             android:label="GrapheGarconKnab"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>

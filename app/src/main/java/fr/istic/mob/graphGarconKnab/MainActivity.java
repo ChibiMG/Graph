@@ -1,19 +1,16 @@
-package garcon.maud.graphe;
+package fr.istic.mob.graphGarconKnab;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.Vibrator;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.InputType;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -22,11 +19,11 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.nio.file.Files;
+
+import garcon.maud.graphe.R;
 
 /**
  * Created by Maud Garçon & Saly Knab on 10/10/2019.
@@ -112,6 +109,10 @@ public class MainActivity extends AppCompatActivity implements EditionMenuFragme
                                 vib.vibrate(100);
                                 return true;
                             }
+                        }
+
+                        for (Arc arc : graphe.getArcs()){
+                            //if()
                         }
                         return false;
                     //action deplacement sur l'ecran
@@ -239,8 +240,9 @@ public class MainActivity extends AppCompatActivity implements EditionMenuFragme
                 break;
 
             case R.id.action_editer_arc:
-                EditionMenuFragment.newInstance(R.menu.menu_edit_arc).show(getSupportFragmentManager(), "Custom bottom sheet");
+                //EditionMenuFragment.newInstance(R.menu.menu_edit_arc).show(getSupportFragmentManager(), "Custom bottom sheet");
                 mode = Mode.EDIT_ARC;
+                Toast.makeText(this,getText(R.string.select_arc), Toast.LENGTH_LONG).show();
                 break;
                 //TODO edition des arcs
         }

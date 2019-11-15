@@ -36,8 +36,6 @@ public class DrawableGraph extends Drawable {
             path.lineTo(arc.getNoeudArrive().getX()+ arc.getNoeudArrive().getTailleNoeud()/2,
                     arc.getNoeudArrive().getY()+ arc.getNoeudArrive().getTailleNoeud()/2);
             //dessiner les arcs avec des lignes
-
-            //TODO trouver coordonnée droite avec 2 points (noeuds) et quand on clique on regarde la proximité avec la droites et les coord cliqué
             canvas.drawPath(path, arc.getPaint());
         }
 

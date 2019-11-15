@@ -48,5 +48,13 @@ public class Arc {
         this.paint = paint;
     }
 
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
     //------------------------------------------------------------
 }

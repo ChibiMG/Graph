@@ -81,5 +81,14 @@ public class Graph {
             }
         }
     }
+
+    /**
+     * Supprimer un arc
+     * @param arc
+     */
+    public void supprimerArc(Arc arc){
+        //supprime l'arc
+        arcs.remove(arc);
+    }
 }
 

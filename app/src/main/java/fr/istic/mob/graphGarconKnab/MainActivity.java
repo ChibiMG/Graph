@@ -28,7 +28,7 @@ import garcon.maud.graphe.R;
 /**
  * Created by Maud Garçon & Saly Knab on 10/10/2019.
  *
- * TODO : V1 edition en sous menu arc et noeud (lieste arc dans les noeuds)
+ * TODO : V1 edition en sous menu arc
  * TODO : V2 landscape (prise en compte rotation) + etiquette des arcs parfaitement dessiné + sauvegarde/import de graphe + changer la courbure de l'arc lors du touché + arc orienté (+ arc courbé) + arc en mode tiré
  */
 
@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity implements EditionMenuFragme
     // Variable des modes
     private Node noeudSelec1;
     private Node noeudSelec2;
+    private  Arc arcSelec;
 
     private EditionMenuFragment editionMenuFragment;
 
@@ -111,11 +112,16 @@ public class MainActivity extends AppCompatActivity implements EditionMenuFragme
                             }
                         }
 
+                        //TODO edition des arcs
                         for (Arc arc : graphe.getArcs()){
                             if(y-10<=((arc.getNoeudArrive().getY()-arc.getNoeudDepart().getY())/(arc.getNoeudArrive().getX()-arc.getNoeudDepart().getX()))*(x-10)+arc.getNoeudArrive().getY()-((arc.getNoeudArrive().getY()-arc.getNoeudDepart().getY())/(arc.getNoeudArrive().getX()-arc.getNoeudDepart().getX())*arc.getNoeudArrive().getX()) ||
                                     y+10>=((arc.getNoeudArrive().getY()-arc.getNoeudDepart().getY())/(arc.getNoeudArrive().getX()-arc.getNoeudDepart().getX()))*(x+10)+arc.getNoeudArrive().getY()-((arc.getNoeudArrive().getY()-arc.getNoeudDepart().getY())/(arc.getNoeudArrive().getX()-arc.getNoeudDepart().getX())*arc.getNoeudArrive().getX())
                                     ){
-
+                                    switch (mode){
+                                        case EDIT_ARC:
+                                            EditionMenuFragment.newInstance(R.menu.menu_edit_arc).show(getSupportFragmentManager(), "Custom bottom sheet");
+                                            break;
+                                }
                             }
                         }
                         return false;
@@ -244,11 +250,9 @@ public class MainActivity extends AppCompatActivity implements EditionMenuFragme
                 break;
 
             case R.id.action_editer_arc:
-                //EditionMenuFragment.newInstance(R.menu.menu_edit_arc).show(getSupportFragmentManager(), "Custom bottom sheet");
                 mode = Mode.EDIT_ARC;
                 Toast.makeText(this,getText(R.string.select_arc), Toast.LENGTH_LONG).show();
                 break;
-                //TODO edition des arcs
         }
 
         return super.onOptionsItemSelected(item);
@@ -283,14 +287,14 @@ public class MainActivity extends AppCompatActivity implements EditionMenuFragme
                 builder.setView(input);
 
                 // Set up the buttons
-                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                builder.setPositiveButton(R.string.action_ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         noeudSelec1.setNom(input.getText().toString());
                         imageGraph.invalidate();
                     }
                 });
-                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                builder.setNegativeButton(R.string.action_cancel, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.cancel();
@@ -329,7 +333,7 @@ public class MainActivity extends AppCompatActivity implements EditionMenuFragme
                 builder2.setView(input2);
 
                 // Set up the buttons
-                builder2.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                builder2.setPositiveButton(R.string.action_ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         int taille = Integer.parseInt(input2.getText().toString());
@@ -346,7 +350,7 @@ public class MainActivity extends AppCompatActivity implements EditionMenuFragme
                         }
                     }
                 });
-                builder2.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                builder2.setNegativeButton(R.string.action_cancel, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.cancel();
@@ -355,6 +359,49 @@ public class MainActivity extends AppCompatActivity implements EditionMenuFragme
 
                 builder2.show();
                 break;
+
+            case R.id.action_modif_etiquette_arc:
+                //ouvrir une fenetre d'alerte
+                AlertDialog.Builder builder3 = new AlertDialog.Builder(this);
+                builder3.setTitle(getString(R.string.action_modif_etiquette_arc));
+
+                // creation du champ text
+                final EditText input3 = new EditText(this);
+                //pour avoir le nom du noeud dans le champ
+                input3.setHint(arcSelec.getNom());
+                builder3.setView(input3);
+
+                // Set up the buttons
+                builder3.setPositiveButton(R.string.action_ok, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        arcSelec.setNom(input3.getText().toString());
+                        imageGraph.invalidate();
+                    }
+                });
+                builder3.setNegativeButton(R.string.action_cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+
+                builder3.show();
+                break;
+
+            case R.id.action_sup_arc:
+                //on appelle la fonction de suppression d'arc
+                graphe.supprimerArc(arcSelec);
+                //on repasse l'arc selectionné a null
+                arcSelec = null;
+                //on repasse en mode normal
+                mode = Mode.NORMAL;
+                //on met a jour la vue
+                imageGraph.invalidate();
+                //fermer le fragement
+                editionMenuFragment.dismiss();
+                break;
+
         }
     }
 

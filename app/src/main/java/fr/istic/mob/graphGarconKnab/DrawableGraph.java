@@ -3,6 +3,7 @@ package fr.istic.mob.graphGarconKnab;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
 import android.graphics.Paint;
+import android.graphics.Path;
 import android.graphics.PixelFormat;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
@@ -27,18 +28,17 @@ public class DrawableGraph extends Drawable {
     @Override
     public void draw(@NonNull Canvas canvas) {
         //dessiner les arcs du graphe
+        Path path = new Path();
         for (Arc arc : graphe.getArcs()){
+            path.reset();
+            path.moveTo(arc.getNoeudDepart().getX()+ arc.getNoeudDepart().getTailleNoeud()/2,
+                    arc.getNoeudDepart().getY()+ arc.getNoeudDepart().getTailleNoeud()/2);
+            path.lineTo(arc.getNoeudArrive().getX()+ arc.getNoeudArrive().getTailleNoeud()/2,
+                    arc.getNoeudArrive().getY()+ arc.getNoeudArrive().getTailleNoeud()/2);
             //dessiner les arcs avec des lignes
-            canvas.drawLine(
-                    //On recupere les positions du noeud de depart...
-                    arc.getNoeudDepart().getX()+ arc.getNoeudDepart().getTailleNoeud()/2,
-                    arc.getNoeudDepart().getY()+ arc.getNoeudDepart().getTailleNoeud()/2,
-                    //...et ceux du noeud d'arrive
-                    arc.getNoeudArrive().getX()+ arc.getNoeudArrive().getTailleNoeud()/2,
-                    arc.getNoeudArrive().getY()+ arc.getNoeudArrive().getTailleNoeud()/2,
-                    //on trace l'arc
-                    arc.getPaint()
-            );
+
+            //TODO trouver coordonnée droite avec 2 points (noeuds) et quand on clique on regarde la proximité avec la droites et les coord cliqué
+            canvas.drawPath(path, arc.getPaint());
         }
 
         //dessiner les noeuds du graphe

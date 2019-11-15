@@ -112,7 +112,11 @@ public class MainActivity extends AppCompatActivity implements EditionMenuFragme
                         }
 
                         for (Arc arc : graphe.getArcs()){
-                            //if()
+                            if(y-10<=((arc.getNoeudArrive().getY()-arc.getNoeudDepart().getY())/(arc.getNoeudArrive().getX()-arc.getNoeudDepart().getX()))*(x-10)+arc.getNoeudArrive().getY()-((arc.getNoeudArrive().getY()-arc.getNoeudDepart().getY())/(arc.getNoeudArrive().getX()-arc.getNoeudDepart().getX())*arc.getNoeudArrive().getX()) ||
+                                    y+10>=((arc.getNoeudArrive().getY()-arc.getNoeudDepart().getY())/(arc.getNoeudArrive().getX()-arc.getNoeudDepart().getX()))*(x+10)+arc.getNoeudArrive().getY()-((arc.getNoeudArrive().getY()-arc.getNoeudDepart().getY())/(arc.getNoeudArrive().getX()-arc.getNoeudDepart().getX())*arc.getNoeudArrive().getX())
+                                    ){
+
+                            }
                         }
                         return false;
                     //action deplacement sur l'ecran

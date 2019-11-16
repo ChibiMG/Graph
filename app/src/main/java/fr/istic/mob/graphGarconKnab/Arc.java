@@ -2,6 +2,10 @@ package fr.istic.mob.graphGarconKnab;
 
 import android.graphics.Paint;
 
+import static java.lang.Math.abs;
+import static java.lang.Math.atan;
+import static java.lang.Math.cos;
+
 /**
  * Created by Maud Garçon & Saly Knab
  */
@@ -23,7 +27,7 @@ public class Arc {
         this.noeudDepart = noeudDepart;
         this.noeudArrive = noeudArrive;
         //definition du nom de l'arc
-        this.nom = null;
+        this.nom = "";
 
         //on doit definir une taille et un style dans le paint pour que l'arc soit visible
         paint.setStrokeWidth(6F);
@@ -54,6 +58,24 @@ public class Arc {
 
     public void setNom(String nom) {
         this.nom = nom;
+    }
+
+    /**
+     * Distance entre l'arc et un point
+     * @param x ordonnee du point
+     * @param y absice du point
+     * @return
+     */
+    public double distance(float x, float y) {
+        // Coef dir de la droite
+        float a = (noeudArrive.getY() - noeudDepart.getY()) / (noeudArrive.getX() - noeudDepart.getX());
+        // Ordonnée à l'origine
+        float b = noeudArrive.getY() + noeudArrive.getTailleNoeud()/2 - a * (noeudArrive.getX() + noeudArrive.getTailleNoeud()/2);
+        // Valeur de la droite en x
+        float yDroite = a * x + b;
+
+        // Distance entre le point et la droite
+        return abs(y - yDroite) * cos(atan(a));
     }
 
     //------------------------------------------------------------

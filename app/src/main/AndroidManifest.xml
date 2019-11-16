@@ -16,6 +16,7 @@
         <activity
             android:name="fr.istic.mob.graphGarconKnab.MainActivity"
             android:label="GrapheGarconKnab"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

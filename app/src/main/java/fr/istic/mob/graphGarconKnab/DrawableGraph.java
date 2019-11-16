@@ -30,6 +30,7 @@ public class DrawableGraph extends Drawable {
         //dessiner les arcs du graphe
         Path path = new Path();
         for (Arc arc : graphe.getArcs()){
+            Paint paintT = new Paint();
             path.reset();
             path.moveTo(arc.getNoeudDepart().getX()+ arc.getNoeudDepart().getTailleNoeud()/2,
                     arc.getNoeudDepart().getY()+ arc.getNoeudDepart().getTailleNoeud()/2);
@@ -37,6 +38,13 @@ public class DrawableGraph extends Drawable {
                     arc.getNoeudArrive().getY()+ arc.getNoeudArrive().getTailleNoeud()/2);
             //dessiner les arcs avec des lignes
             canvas.drawPath(path, arc.getPaint());
+
+            //param dessin du texte
+            paintT.setTextSize(35);
+            paintT.setColor(0xFF000000);
+
+            //On créé les textes des noeuds
+            canvas.drawText(arc.getNom(),(arc.getNoeudArrive().getX()+arc.getNoeudDepart().getX())/2, (arc.getNoeudArrive().getY()+arc.getNoeudDepart().getY())/2,paintT);
         }
 
         //dessiner les noeuds du graphe

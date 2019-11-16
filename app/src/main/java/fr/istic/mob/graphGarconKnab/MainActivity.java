@@ -25,10 +25,12 @@ import java.io.IOException;
 
 import garcon.maud.graphe.R;
 
+import static java.lang.Math.max;
+import static java.lang.Math.min;
+
 /**
  * Created by Maud Garçon & Saly Knab on 10/10/2019.
  *
- * TODO : V1 edition en sous menu arc
  * TODO : V2 landscape (prise en compte rotation) + etiquette des arcs parfaitement dessiné + sauvegarde/import de graphe + changer la courbure de l'arc lors du touché + arc orienté (+ arc courbé) + arc en mode tiré
  */
 
@@ -112,15 +114,16 @@ public class MainActivity extends AppCompatActivity implements EditionMenuFragme
                             }
                         }
 
-                        //TODO edition des arcs
-                        for (Arc arc : graphe.getArcs()){
-                            if(y-10<=((arc.getNoeudArrive().getY()-arc.getNoeudDepart().getY())/(arc.getNoeudArrive().getX()-arc.getNoeudDepart().getX()))*(x-10)+arc.getNoeudArrive().getY()-((arc.getNoeudArrive().getY()-arc.getNoeudDepart().getY())/(arc.getNoeudArrive().getX()-arc.getNoeudDepart().getX())*arc.getNoeudArrive().getX()) ||
-                                    y+10>=((arc.getNoeudArrive().getY()-arc.getNoeudDepart().getY())/(arc.getNoeudArrive().getX()-arc.getNoeudDepart().getX()))*(x+10)+arc.getNoeudArrive().getY()-((arc.getNoeudArrive().getY()-arc.getNoeudDepart().getY())/(arc.getNoeudArrive().getX()-arc.getNoeudDepart().getX())*arc.getNoeudArrive().getX())
-                                    ){
-                                    switch (mode){
-                                        case EDIT_ARC:
-                                            EditionMenuFragment.newInstance(R.menu.menu_edit_arc).show(getSupportFragmentManager(), "Custom bottom sheet");
-                                            break;
+                        if (mode == Mode.EDIT_ARC) {
+                            for (Arc arc : graphe.getArcs()) {
+                                if (arc.distance(x, y) < 50 &&
+                                        x > min(arc.getNoeudArrive().getX(), arc.getNoeudDepart().getX()) &&
+                                        x < max(arc.getNoeudArrive().getX(), arc.getNoeudDepart().getX()) + arc.getNoeudDepart().getTailleNoeud()) {
+                                    arcSelec = arc;
+                                    if (editionMenuFragment == null) {
+                                        editionMenuFragment = EditionMenuFragment.newInstance(R.menu.menu_edit_arc);
+                                        editionMenuFragment.show(getSupportFragmentManager(), "Custom bottom sheet");
+                                    }
                                 }
                             }
                         }
@@ -273,6 +276,7 @@ public class MainActivity extends AppCompatActivity implements EditionMenuFragme
                 imageGraph.invalidate();
                 //fermer le fragement
                 editionMenuFragment.dismiss();
+
                 break;
 
             case R.id.action_modif_nom_noeud:

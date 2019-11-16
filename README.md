@@ -30,24 +30,25 @@ Sur ce menu nous pouvons modifier le nom, la couleur, la taille et supprimer le 
 
 Tapez le nom souhaité.
 
-
+![](/nom.jpg)
 
 #### Modification de la couleur
 
 Couleur noire par défaut. Choisir une couleur.
 
-
+![](/couleur.jpg)
 
 #### Modification de la taille
 
 Les tailles des noeuds sont limités entre 50 et 200.
 
+![](/taille.jpg)
+
 ### Edition d'un arc
 
-Sélectionner un arc existant après avoir choisi "Editer un arc".
+Avant tout, il faut ajouter un arc. Ensuite choisissez "Editer un arc" puis sélectionnez un arc existant.
 
 Un menu s'ouvre, il est alors possible de modifier le nom et supprimer l'arc.
-
 
 A partir de là, les noeuds peuvent être déplacés comme bon vous semble et vous pouvez envoyer un mail directement via l'application qui aura en pièce jointe l'image du graph.
 
